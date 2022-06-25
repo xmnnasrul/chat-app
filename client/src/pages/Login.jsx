@@ -4,7 +4,7 @@ import axios from 'axios';
 import 'react-toastify/dist/ReactToastify.css';
 import Logo from '../assets/logo.svg';
 import './csspages/Register.css';
-import { loginRoute } from '../utils/APIRouters.js';
+import { loginRoute } from '../utils/APIRoutes.js';
 import { useNavigate } from 'react-router-dom';
 
 
