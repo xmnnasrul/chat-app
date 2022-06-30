@@ -1,21 +1,22 @@
 const mongoose = require("mongoose");
+
 const userSchema = new mongoose.Schema({
   username: {
     type: String,
-    require: true,
+    required: true,
     min: 3,
-    max: 30,
+    max: 20,
     unique: true,
   },
   email: {
     type: String,
-    require: true,
+    required: true,
     unique: true,
-    max: 60,
+    max: 50,
   },
   password: {
     type: String,
-    require: true,
+    required: true,
     min: 8,
   },
   isAvatarImageSet: {
