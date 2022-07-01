@@ -11,11 +11,11 @@ export default function ChatContainer({ currentChat, socket }) {
   const scrollRef = useRef();
   const [arrivalMessage, setArrivalMessage] = useState(null);
 
-  useEffect(() => {
-    const data = JSON.parse(
+  useEffect(async () => {
+    const data = await JSON.parse(
       localStorage.getItem(process.env.REACT_APP_LOCALHOST_KEY)
     );
-    const response = axios.post(recieveMessageRoute, {
+    const response = await axios.post(recieveMessageRoute, {
       from: data._id,
       to: currentChat._id,
     });
@@ -59,7 +59,7 @@ export default function ChatContainer({ currentChat, socket }) {
         setArrivalMessage({ fromSelf: false, message: msg });
       });
     }
-  }, [socket]);
+  }, []);
 
   useEffect(() => {
     arrivalMessage && setMessages((prev) => [...prev, arrivalMessage]);
@@ -90,8 +90,9 @@ export default function ChatContainer({ currentChat, socket }) {
           return (
             <div ref={scrollRef} key={uuidv4()}>
               <div
-                className={`message ${message.fromSelf ? "sended" : "recieved"
-                  }`}
+                className={`message ${
+                  message.fromSelf ? "sended" : "recieved"
+                }`}
               >
                 <div className="content ">
                   <p>{message.message}</p>
